@@ -1,1 +1,103 @@
+/*
+Problem Description :
+The function accepts two positive integers ‘r’ and ‘unit’ and a positive integer array ‘arr’ of size ‘n’ as its argument ‘r’ represents the number of rats present in an area, ‘unit’ is the amount of food each rat consumes and each ith element of array ‘arr’ represents the amount of food present in ‘i+1’ house number, where 0 <= i
+
+Note:
+
+Return -1 if the array is null
+Return 0 if the total amount of food from all houses is not sufficient for all the rats.
+Computed values lie within the integer range.
+Example:
+
+Input:
+
+r: 7
+unit: 2
+n: 8
+arr: 2 8 3 5 7 4 1 2
+Output:
+
+4
+
+Explanation:
+Total amount of food required for all rats = r * unit
+
+= 7 * 2 = 14.
+
+The amount of food in 1st houses = 2+8+3+5 = 18. Since, amount of food in 1st 4 houses is sufficient for all the rats. Thus, output is 4.
+
+
+
+ */
+// Import the java.util package for using arrays and other utility classes
+import java.util.*;
+
+// Define a class named Problem_2
+class Problem_2 {
+    // Define a static method named calculate that takes three parameters: r, unit, and arr
+    public static int calculate(int r, int unit, int[] arr) {
+        // Check if the input array is null
+        if (arr == null) {
+            // Return -1 if the array is null
+            return -1;
+        }
+
+        // Calculate the total amount of food required for all rats
+        int totalFoodRequired = r * unit;
+
+        // Initialize variables to store the cumulative sum and house count
+        int sum = 0;
+        int count = 0;
+
+        // Loop through the array
+        for (int i = 0; i < arr.length; i++) {
+            // Add the current house's food to the cumulative sum
+            sum += arr[i];
+
+            // Increment the house count
+            count++;
+
+            // Check if the cumulative sum is sufficient for all rats
+            if (sum >= totalFoodRequired) {
+                // Return the house count if the sum is sufficient
+                return count;
+            }
+        }
+
+        // Return 0 if the loop completes without finding a sufficient cumulative sum
+        return 0;
+    }
+}
+
+// Define the main class
+public class Main {
+    // Define the main method
+    public static void main(String[] args) {
+        // Print a welcome message (not necessary in this case)
+        // System.out.print("Hello and welcome!");
+Scanner sc=new Scanner(System.in);
+        System.out.print("enter the array size");
+        int n= sc.nextInt();
+        int[] arr = new int[n]; // Sample array input
+        System.out.printf("enter the number of rats");
+        int r=sc.nextInt();
+        System.out.printf("Enter the amount of food");
+        int unit=sc.nextInt();
+        // Create an instance of the Problem_2 class
+        System.out.print("Enter the array elements: ");
+        for (int i = 0; i < n; i++) {
+         arr[i]=sc.nextInt();
+        }
+
+        // Call the calculate method with the user input
+        int result = Problem_2.calculate(r, unit, arr);
+
+        // Print the result
+        System.out.println("Result: " + result);
+    }
+}
+
+
+
+
 
